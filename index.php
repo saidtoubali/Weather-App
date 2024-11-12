@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <title>Weather App</title>
@@ -8,6 +9,7 @@
     <body>
         <div class="container">
             <h1>A Moroccan Weather App from Said</h1>
+            #Creating the form that will let you choose the city 
             <form method="POST">
                 <label for="city">Choose a city</label>
                 <select name="city" id="city">
@@ -29,15 +31,16 @@
                 <?php
                 if (isset($_POST['getweather'])) {
                     $city = $_POST['city'];
+                    //Put you Api key from the openweathermap website
                     $apiKey = 'Your_API_Key';
                     $url = "https://api.openweathermap.org/data/2.5/weather?q=$city,MA&appid=$apiKey&units=metric";
-
                     $request = curl_init();
                     curl_setopt($request, CURLOPT_URL, $url);
                     curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
                     $response = curl_exec($request);
                     curl_close($request);
 
+                    //The text for the result tht will be show to you
                     if ($response) {
                         $data = json_decode($response, false);
 
